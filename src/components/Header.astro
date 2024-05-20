@@ -1,0 +1,80 @@
+---
+import { Menu, X } from "lucide-astro";
+---
+
+<nav
+    class="md:items-center w-screen h-auto p-1 bg-gray-100 opacity-90 fixed z-20 md:flex md:flex-row md:justify-between"
+>
+    <div class="flex justify-between items-center mx-6">
+        <img src="/RZB_Firma.webp" class="w-20 scale-110 md:scale-150" />
+        <button
+            id="menubutton"
+            class="menu md:hidden Menu transition-all duration-500"
+        >
+            <span id="Menu"><Menu /></span>
+            <span id="X" class="hidden"><X /></span>
+        </button>
+    </div>
+    <ul
+        class="z-[-1] gap-7 md:justify-center cursor-pointer ml-8 fuente1 md:flex md:flex-row md:z-auto md:static hidden"
+    >
+        <li
+            class="hover:-translate-y-1 hover:scale-110 hover:text-[#CB2032] duration-300"
+        >
+            <a href="/">INICIO</a>
+        </li>
+        <li
+            class="hover:-translate-y-1 hover:scale-110 hover:text-[#CB2032] duration-300"
+        >
+            <a href="/conoceme">CONÓCEME</a>
+        </li>
+        <li
+            class="hover:-translate-y-1 hover:scale-110 hover:text-[#CB2032] duration-300"
+        >
+            <a href="/propuestas">PROPUESTAS</a>
+        </li>
+        <li
+            class="hover:-translate-y-1 hover:scale-110 hover:text-[#CB2032] duration-300"
+        >
+            <a href="/galeria"> GALERÍA </a>
+        </li>
+        <li
+            class="hover:-translate-y-1 hover:scale-110 hover:text-[#CB2032] duration-300"
+        >
+            <a href="/mapa">MAPA</a>
+        </li>
+        <li
+            class="hover:-translate-y-1 hover:scale-110 hover:text-[#CB2032] duration-300"
+        >
+            <a href="/informando">INFORMANDO</a>
+        </li>
+       <li
+            class="hover:-translate-y-1 hover:scale-110 hover:text-[#CB2032] duration-300"
+        >
+            <a href="/candidatos">CONÓCE A TUS CANDIDATOS DEL PRI</a>
+        </li>
+    </ul>
+</nav>
+
+<script>
+    let list = document.querySelector("ul");
+    let Menu = document.getElementById("Menu");
+    let X = document.getElementById("X");
+    let menubutton = document.getElementById("menubutton");
+    const button = document.querySelectorAll("button.Menu");
+    button.forEach((button) => {
+        button.addEventListener("click", () => {
+            menubutton.classList.contains("menu")
+                ? (menubutton.classList.remove("menu"),
+                  menubutton.classList.add("close"),
+                  list.classList.remove("hidden"),
+                  X.classList.remove("hidden"),
+                  Menu.classList.add("hidden"))
+                : (menubutton.classList.remove("close"),
+                  menubutton.classList.add("menu"),
+                  list.classList.add("hidden"),
+                  X.classList.add("hidden"),
+                  Menu.classList.remove("hidden"));
+        });
+    });
+</script>

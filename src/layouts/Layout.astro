@@ -1,0 +1,77 @@
+---
+import Footer from "@/components/Footer.astro";
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{title}</title>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/png" href="/PS_Isotipo_.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+  </head>
+  <body>
+    <slot />
+    <Footer/>
+  </body>
+</html>
+
+<style is:global>
+  @font-face {
+    font-family: 'CoveredByYourGrace';
+    src: url("/fonts/CoveredByYourGrace.ttf");
+  }
+  @font-face {
+    font-family: 'Gotham-Bold';
+    src: url("/fonts/GothamBold.otf");
+  }
+  @font-face {
+    font-family: 'Gotham-Book';
+    src: url("/fonts/Gotham-Book.otf");
+  }
+
+  html {
+    background: #9b9898;
+    letter-spacing: -0.025rem;
+  }
+
+  body,
+  figure {
+    margin: 0;
+    padding: 0;
+  }
+
+  a {
+    margin:0;
+    padding:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+    text-decoration: none;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  .fuente1 {
+		font-family: "Gotham-Bold";
+	}
+	.fuente2 {
+		font-family: "CoveredByYourGrace";
+	}
+  .fuente3 {
+		font-family: "Gotham-Book";
+	}
+</style>
