@@ -1,0 +1,101 @@
+---
+import Layout from "@/layouts/Layout.astro";
+
+const pin = Astro.cookies.get("pin").value;
+
+if (!pin) {
+    Astro.redirect("/");
+}
+
+async function fetchJsonData(url) {
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error("Error en el fetch");
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.error("Error:", error);
+        return [];
+    }
+}
+
+const userData = await fetchJsonData(
+    "https://contactocoahuila.purpuraamerida.com/atencion/boletas/validaPin/" +
+        pin,
+);
+console.log(userData);
+
+
+const municipios = await fetchJsonData(
+    "https://contactocoahuila.purpuraamerida.com/atencion/boletas/municipios",
+);
+console.log(municipios);
+
+const tipoBoleta = await fetchJsonData(
+    "https://contactocoahuila.purpuraamerida.com/atencion/boletas/tipoBoleta",
+);
+console.log(tipoBoleta);
+---
+
+<Layout title="Captura boletas">
+    <style>
+        body {
+            background-color: #f3f4f6;
+        }
+    </style>
+
+    <div class="bg-gray-100 p-4 flex flex-col">
+        <h1 class="text-3xl font-bold text-center mb-8">Captura de boletas</h1>
+        <div class="w-full flex justify-center">
+            <div class="grid grid-cols-3 gap-10">
+                <div>
+                    <label class="text-2xl font-bold">Usuario:</label>
+                    <h1 class="text-2xl ">{userData.nombre}</h1>
+                </div>
+                <div>
+                    <label class="text-2xl font-bold">PIN:</label>
+                    <h1 class="text-2xl">{pin}</h1>
+                </div>
+                <div>
+                    <label class="text-2xl font-bold">Subidas:</label>
+                    <h1 class="text-2xl f">{userData.subidas}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class=" p-24 justify-center items-center">
+            <div class="grid grid-cols-3 gap-4">
+                <div>
+                    <label for="municipio" class="text-2xl font-bold">Municipio:</label>
+                    <select name="municipio" id="municipio" class="w-full p-2">
+                        <option value="">Selecciona un municipio</option>
+                        {municipios.map((municipio) => (
+                            <option value={municipio.id}>{municipio.municipio}</option>
+                        ))}
+                    </select>
+                </div>
+                <div>
+                    <label for="tipoBoleta" class="text-2xl font-bold">Tipo de boleta:</label>
+                    <select name="tipoBoleta" id="tipoBoleta" class="w-full p-2">
+                        <option value="">Selecciona un tipo de boleta</option>
+                        {tipoBoleta.map((tipo) => (
+                            <option value={tipo.id}>{tipo.tipo_boleta}</option>
+                        ))}
+                    </select>
+                </div>
+                <div class="flex mt-8 justify-center items-center">
+                    <button id="partidos" class="bg-purple-950 text-white p-2 rounded">Seleccionar</button>
+                </div>
+            </div>
+    </div>
+
+    <div class="p-24 justify-center items-center text-center">
+        partidos
+        <div id="formulario" class="grid grid-cols-5 gap-4 text-center">
+        </div>
+    </div>
+</Layout>
+
+<script src="@/scripts/boletas.js"></script>
