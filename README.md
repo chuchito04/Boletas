@@ -1,3 +1,3 @@
-# Pagina estatica de Rolando Zapata
+# Front de Captura de boletas purpura
 
-pagina estatica de rolando zapata 2024
+Astro full
