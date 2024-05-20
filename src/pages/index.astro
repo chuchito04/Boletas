@@ -5,7 +5,7 @@ import Layout from "@/layouts/Layout.astro";
 <Layout title="Boletas">
 	<div class="flex items-center h-screen justify-center">
 		<form class="flex flex-col justify-center items-center" method="post" action="">
-			<label for="name" class="text-center">Nombre:</label>
+			<label for="name" class="text-center text-2xl">Nombre:</label>
 			<input
 				type="text"
 				id="name"
@@ -14,9 +14,8 @@ import Layout from "@/layouts/Layout.astro";
 				class="w-full px-4 py-2 mb-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
 			/>
 
-			<label for="pin" class="text-center">PIN:</label>
+			<label for="pin" class="text-center text-2xl">PIN:</label>
 			<input
-				type="password"
 				id="pin"
 				name="pin"
 				required
@@ -25,7 +24,8 @@ import Layout from "@/layouts/Layout.astro";
 
 			<button
 				type="submit"
-				class="px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600"
+				id="login"
+				class="px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 text-2xl"
 				>Iniciar Sesión</button
 			>
 		</form>
