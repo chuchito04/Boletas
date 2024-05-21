@@ -79,6 +79,7 @@ async function fetchJsonData(url) {
        
         document.getElementById("guardar").classList.remove("hidden");
         document.getElementById("folioInput").classList.remove("hidden");
+        
     });
 
     const guardar = document.getElementById("guardar");
@@ -119,12 +120,24 @@ async function fetchJsonData(url) {
                 throw new Error("Error en la solicitud POST");
             }
             alert("Datos guardados correctamente");
-            const result = await response.json();
+            const result = await response;
             console.log('Datos guardados:', result);
         }   catch (error) {
             console.error("Error al guardar los datos:", error);
         }
+    
+            const inputs = formulario.querySelectorAll('input');
+            const folioInput = document.getElementById("folio");
+            inputs.forEach(input => {
+                if (input.type === 'checkbox') {
+                    input.checked = false;
+                } else if (input.type === 'text'){
+                    input.value = '';
+                }
+            });
 
+            folioInput.value = '';
+        
         
 
     });
