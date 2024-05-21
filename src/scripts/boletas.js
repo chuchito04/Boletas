@@ -90,8 +90,9 @@ async function fetchJsonData(url) {
     
         //console.log(partidosData);
         formulario.innerHTML = '';
+        const filtroPartidosData = partidosData.filter(partido => !partido.includes("libre"));
 
-        partidosData.forEach(partido => {
+        filtroPartidosData.forEach(partido => {
             const partidoElement = document.createElement('div');
             partidoElement.innerHTML = `
             <div class="p-10 bg-white rounded-xl flex flex-col justify-center items-center shadow-md">
@@ -136,7 +137,7 @@ async function fetchJsonData(url) {
 
         }
         
-        //console.log(datosEnviar);
+        console.log(datosEnviar);
 
         if (folio.value === "") {
             alert("Favor de ingresar el folio");
