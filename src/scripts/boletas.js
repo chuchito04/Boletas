@@ -14,31 +14,6 @@ async function fetchJsonData(url) {
     }
   }
 
-  const validarSesion = document.getElementById("validarSesion");
-  function validarPin() {
-    const pin = getCookieValue("pin");
-    console.log(pin);
-    if (pin === null || pin === "" || pin === undefined || !pin) {
-        window.location.href = "/";
-    }
-  }
-  
-  document.addEventListener("DOMContentLoaded", function() {
-
-    validarPin();  // Llamar a la función validarPin inmediatamente al cargar la página.
-
-    
-    if (validarSesion) {  // Verificar que el elemento existe antes de agregar el event listener.
-        validarSesion.addEventListener("click", (e) => {
-            e.preventDefault();
-            validarPin();
-        });
-    }
-    });
-
- 
-
-
 
   function getCookieValue(name) {
     // Construir el nombre de la cookie seguido de "="
@@ -61,7 +36,28 @@ async function fetchJsonData(url) {
     }
     // Si no se encuentra la cookie, retornar null
     return null;
-}
+  }
+
+  function validarPin() {
+    const pin = getCookieValue("pin");
+    console.log(pin);
+    if (pin === null || pin === "" || pin === undefined || !pin) {
+        window.location.href = "/";
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", function() {
+
+    validarPin();  // Llamar a la función validarPin inmediatamente al cargar la página.
+
+    const validarSesion = document.getElementById("validarSesion");
+    if (validarSesion) {  // Verificar que el elemento existe antes de agregar el event listener.
+        validarSesion.addEventListener("click", (e) => {
+            e.preventDefault();
+            validarPin();
+        });
+    }
+    });
 
     const logout = document.getElementById("logout");
     logout.addEventListener("click", (e) => {
@@ -120,7 +116,7 @@ async function fetchJsonData(url) {
         e.preventDefault();
 
         let checked = document.querySelectorAll('input[type="checkbox"]:checked');
-        console.log(checked);
+        //console.log(checked);
         let datos = [];
         for (let i = 0; i < checked.length; i++) {
             console.log(checked[i].id);
@@ -137,12 +133,13 @@ async function fetchJsonData(url) {
 
         }
         
-        console.log(datosEnviar);
+        //console.log(datosEnviar);
 
         if (folio.value === "") {
             alert("Favor de ingresar el folio");
+            console.log("Datos no enviados, falta folio");
             return;
-        }
+        }else{
         try {
             const response = await fetch("https://contactocoahuila.purpuraamerida.com/atencion/boletas/capturar", {
                 method: 'POST',
@@ -170,7 +167,7 @@ async function fetchJsonData(url) {
             });
 
             folioInput.value = '';
-        
+        }
         
 
     });
