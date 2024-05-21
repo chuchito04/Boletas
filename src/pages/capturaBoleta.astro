@@ -47,7 +47,7 @@ console.log(tipoBoleta);
     </style>
 
     <div class="bg-gray-100 p-4 flex flex-col">
-        <h1 class="text-3xl font-bold text-center mb-8">Captura de boletas</h1>
+        <h1 class="text-3xl font-bold text-center mb-2">Captura de boletas</h1>
         <div class="w-full flex justify-center">
             <div class="grid grid-cols-3 gap-10">
                 <div>
@@ -65,8 +65,8 @@ console.log(tipoBoleta);
             </div>
         </div>
     </div>
-    <div class=" p-24 justify-center items-center">
-            <div class="grid grid-cols-3 gap-4">
+    <div class="p-4 flex justify-center items-center">
+            <div class="grid md:grid-cols-2 gap-4">
                 <div>
                     <label for="municipio" class="text-2xl font-bold">Municipio:</label>
                     <select name="municipio" id="municipio" class="w-full p-2">
@@ -85,16 +85,60 @@ console.log(tipoBoleta);
                         ))}
                     </select>
                 </div>
-                <div class="flex mt-8 justify-center items-center">
+                <div class="flex mt-8 justify-center items-center hidden">
                     <button id="partidos" class="bg-purple-950 text-white p-2 rounded">Seleccionar</button>
                 </div>
             </div>
     </div>
 
-    <div class="p-24 justify-center items-center text-center">
-        partidos
-        <div id="formulario" class="grid grid-cols-5 gap-4 text-center">
+    <div class="p-4 justify-center items-center text-center pb-4 min-h-screen">
+        <div id="formulario" class="grid md:grid-cols-5 gap-4 text-center">
+           <!--  <div class="p-2 bg-white rounded-xl flex flex-col justify-center items-center">
+                <img src="/PAN.webp" alt="PAN" class=" w-32 h-32 object-cover" >
+                <input type="checkbox" name="pan" id="PAN" class="w-24 h-12">
+            </div>
+            <div class="p-2 bg-white rounded-xl flex flex-col justify-center items-center">
+                <img src="/PRI.webp" alt="PRI" class=" w-32 h-32 object-cover" >
+                <input type="checkbox" name="pri" id="PRI" class="w-24 h-12">
+            </div>
+            <div class="p-2 bg-white rounded-xl flex flex-col justify-center items-center">
+                <img src="/PRD.webp" alt="PRD" class=" w-32 h-32 object-cover" >
+                <input type="checkbox" name="prd" id="PRD" class="w-24 h-12">
+            </div>
+            <div class="p-2 bg-white rounded-xl flex flex-col justify-center items-center">
+                <img src="/MORENA.png" alt="MORENA" class=" w-32 h-32 object-cover" >
+                <input type="checkbox" name="morena" id="MORENA" class="w-24 h-12">
+            </div>
+            <div class="p-2 bg-white rounded-xl flex flex-col justify-center items-center">
+                <img src="/PT.png" alt="PT" class=" w-32 h-32 object-cover" >
+                <input type="checkbox" name="pt" id="PT" class="w-24 h-12">
+            </div>
+            <div class="p-2 bg-white rounded-xl flex flex-col justify-center items-center">
+                <img src="/NALIANZA.png" alt="NALIANZA" class=" w-32 h-32 object-cover" >
+                <input type="checkbox" name="nalianza" id="NALIANZA" class="w-24 h-12">
+            </div>
+            <div class="p-2 bg-white rounded-xl flex flex-col justify-center items-center">
+                <img src="/VERDE.png" alt="VERDE" class=" w-32 h-32 object-cover" >
+                <input type="checkbox" name="verde" id="VERDE" class="w-24 h-12">
+            </div>
+            <div class="p-2 bg-white rounded-xl flex flex-col justify-center items-center">
+                <img src="/MC.png" alt="MC" class=" w-32 h-32 object-cover" >
+                <input type="checkbox" name="mc" id="MC" class="w-24 h-12">
+            </div>
+            <div class="p-2 bg-white rounded-xl flex flex-col justify-center items-center">
+                <img src="/CI.png" alt="CI" class=" w-32 h-32 object-cover" >
+                <input type="checkbox" name="ci" id="CI" class="w-24 h-12">
+            </div>
+            <div class="p-2 bg-white rounded-xl flex flex-col justify-center items-center">
+            <label for="libre" class="text-2xl font-bold">Libre:</label>
+            <input class="border bg-gray-200 text-center" type="text" name="libre" id="libre">
+            </div> -->
         </div>
+        <div class="hidden mt-4 mb-4" id="folioInput">
+            <label for="folio" class="text-xl font-bold">FOLIO:</label>
+            <input required class="border border-gray-400 bg-gray-200 text-center" name="folio" id="folio"></input>
+            </div>
+        <button id="guardar" class="bg-purple-950 text-white p-2 rounded hidden">Guardar</button>
     </div>
 </Layout>
 
