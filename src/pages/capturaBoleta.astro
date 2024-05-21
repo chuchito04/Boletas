@@ -1,12 +1,8 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 
-const pin = Astro.cookies.get("pin").value;
-
-if (!pin) {
-    Astro.redirect("/");
-}
-
+const pin = Astro.cookies.get("pin")?.value;
+    
 async function fetchJsonData(url) {
     try {
         const response = await fetch(url);
@@ -45,8 +41,10 @@ console.log(tipoBoleta);
             background-color: #f3f4f6;
         }
     </style>
+    <button class="hidden" id="validarSesion"></button>
 
     <div class="bg-gray-100 p-4 flex flex-col">
+        <a class=" bg-red-500 text-white p-2 text-center ml-[80vw] cursor-pointer" id="logout">Cerrar Sesión</a>
         <h1 class="text-3xl font-bold text-center mb-2">Captura de boletas</h1>
         <div class="w-full flex justify-center">
             <div class="grid grid-cols-3 gap-10">

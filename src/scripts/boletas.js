@@ -14,6 +14,32 @@ async function fetchJsonData(url) {
     }
   }
 
+  const validarSesion = document.getElementById("validarSesion");
+  function validarPin() {
+    const pin = getCookieValue("pin");
+    console.log(pin);
+    if (pin === null || pin === "" || pin === undefined || !pin) {
+        window.location.href = "/";
+    }
+  }
+  
+  document.addEventListener("DOMContentLoaded", function() {
+
+    validarPin();  // Llamar a la función validarPin inmediatamente al cargar la página.
+
+    
+    if (validarSesion) {  // Verificar que el elemento existe antes de agregar el event listener.
+        validarSesion.addEventListener("click", (e) => {
+            e.preventDefault();
+            validarPin();
+        });
+    }
+    });
+
+ 
+
+
+
   function getCookieValue(name) {
     // Construir el nombre de la cookie seguido de "="
     let nameEQ = name + "=";
@@ -36,6 +62,13 @@ async function fetchJsonData(url) {
     // Si no se encuentra la cookie, retornar null
     return null;
 }
+
+    const logout = document.getElementById("logout");
+    logout.addEventListener("click", (e) => {
+        e.preventDefault();
+        document.cookie = "pin=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        window.location.href = "/";
+    });
 
 
     const partidos = document.getElementById("partidos");
