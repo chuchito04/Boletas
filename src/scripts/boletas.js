@@ -70,8 +70,13 @@ async function fetchJsonData(url) {
     const partidos = document.getElementById("partidos");
     const formulario = document.getElementById("formulario");
     const tipoBoleta = document.getElementById("tipoBoleta");
+    const tipoMunicipio = document.getElementById("municipio");
 
     tipoBoleta.addEventListener("change", () => {
+        partidos.click();
+    });
+
+    tipoMunicipio.addEventListener("change", () => {
         partidos.click();
     });
 
