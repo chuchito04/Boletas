@@ -115,11 +115,21 @@ async function fetchJsonData(url) {
         
     }});
 
-    const guardar = document.getElementById("guardar");
+    function mostrarUltimaCaptura() {
+        const ultimoDato = getCookieValue("ultimacap");
+        const datoMostrado = document.getElementById("ultimodato");
+        datoMostrado.innerHTML = '';
+        datoMostrado.innerHTML += `<h1 class="text-2xl f" id="ultimodato">${ultimoDato}</h1>`;
+    }
+
+    const guardar = document.getElementById("guardar"); 
     guardar.addEventListener("click", async (e) => {
         e.preventDefault();
 
         let checked = document.querySelectorAll('input[type="checkbox"]:checked');
+        let elementoselect = document.getElementById("tipoBoleta");
+        let elementoindex = elementoselect.selectedIndex;
+        let ultimo = elementoselect.options[elementoindex].text + " - " + document.getElementById("folio").value; 
         //console.log(checked);
         let datos = [];
         for (let i = 0; i < checked.length; i++) {
@@ -134,7 +144,12 @@ async function fetchJsonData(url) {
             partidos: datos,
             folio: document.getElementById("folio").value,
             libre: document.getElementById("libre").value
+        }
 
+        if (datosEnviar.partidos.length === 0) {
+            alert("Favor de seleccionar al menos un partido");
+            console.log("Datos no enviados, falta seleccionar partido");
+            return;
         }
         
         console.log(datosEnviar);
@@ -157,30 +172,40 @@ async function fetchJsonData(url) {
             const result = await response.json();
             if (result.resultado === 1) {
                 alert("Datos guardados correctamente");
+                const inputs = formulario.querySelectorAll('input');
+                const folioInput = document.getElementById("folio");
+                inputs.forEach(input => {
+                    if (input.type === 'checkbox') {
+                        input.checked = false;
+                    } else if (input.type === 'text'){
+                        input.value = '';
+                    }
+                });
+
+                folioInput.value = '';
+                
+                document.cookie = "ultimacap=" + ultimo + "; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/";
+                mostrarUltimaCaptura();
             }
 
             if (result.resultado === 0) {
                 alert("Error al guardar los datos");
             }
+
+            if (result.resultado === 3) {
+                alert("Boleta duplicada");
+            }
             //console.log('Datos guardados:', result);
         }   catch (error) {
             console.error("Error al guardar los datos:", error);
+            alert("Error al guardar en DB")
         }
-    
-            const inputs = formulario.querySelectorAll('input');
-            const folioInput = document.getElementById("folio");
-            inputs.forEach(input => {
-                if (input.type === 'checkbox') {
-                    input.checked = false;
-                } else if (input.type === 'text'){
-                    input.value = '';
-                }
-            });
-
-            folioInput.value = '';
+            
         }
         
 
     });
+
+    
     
 

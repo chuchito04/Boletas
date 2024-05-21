@@ -2,6 +2,7 @@
 import Layout from "@/layouts/Layout.astro";
 
 const pin = Astro.cookies.get("pin")?.value;
+let ultimacap = Astro.cookies.get("ultimacap")?.value;
     
 async function fetchJsonData(url) {
     try {
@@ -58,8 +59,8 @@ console.log(tipoBoleta);
                     <h1 class="text-2xl">{pin}</h1>
                 </div>
                 <div>
-                    <label class="text-md md:text-2xl text-inherit font-bold">Boletas Capturadas:</label>
-                    <h1 class="text-2xl f">{userData.subidas}</h1>
+                    <label class="text-md md:text-2xl text-inherit font-bold">Última Captura:</label>
+                    <h1 class="text-2xl f" id="ultimodato">{ultimacap}</h1>
                 </div>
             </div>
         </div>
