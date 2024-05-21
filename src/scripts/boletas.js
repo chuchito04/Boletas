@@ -146,7 +146,7 @@ async function fetchJsonData(url) {
             libre: document.getElementById("libre").value
         }
 
-        if (datosEnviar.partidos.length === 0) {
+        if (datosEnviar.partidos.length === 0 && datosEnviar.libre === "") {
             alert("Favor de seleccionar al menos un partido");
             console.log("Datos no enviados, falta seleccionar partido");
             return;
