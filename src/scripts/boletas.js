@@ -82,7 +82,10 @@ async function fetchJsonData(url) {
 
        // console.log("boleta", tipoboleta);
         //console.log("municipio: " , id_municipio);
-    
+        if (tipoboleta === "" || id_municipio === "") {
+            alert("Favor de seleccionar un tipo de boleta y un municipio");
+            return;
+        } else {
         const partidosData = await fetchJsonData("https://contactocoahuila.purpuraamerida.com/atencion/boletas/consultaPartidos/" + tipoboleta + "-" + id_municipio);
     
         //console.log(partidosData);
@@ -109,7 +112,7 @@ async function fetchJsonData(url) {
         document.getElementById("guardar").classList.remove("hidden");
         document.getElementById("folioInput").classList.remove("hidden");
         
-    });
+    }});
 
     const guardar = document.getElementById("guardar");
     guardar.addEventListener("click", async (e) => {
