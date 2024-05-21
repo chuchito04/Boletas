@@ -45,23 +45,22 @@ async function fetchJsonData(url) {
     tipoBoleta.addEventListener("change", () => {
         partidos.click();
     });
-    
+
     partidos.addEventListener("click", async (e) => {
         e.preventDefault();
         const tipoboleta = document.getElementById("tipoBoleta").value;
         const id_municipio = document.getElementById("municipio").value;
 
-        console.log("boleta", tipoboleta);
-        console.log("municipio: " , id_municipio);
+       // console.log("boleta", tipoboleta);
+        //console.log("municipio: " , id_municipio);
     
         const partidosData = await fetchJsonData("https://contactocoahuila.purpuraamerida.com/atencion/boletas/consultaPartidos/" + tipoboleta + "-" + id_municipio);
     
-        console.log(partidosData);
+        //console.log(partidosData);
         formulario.innerHTML = '';
 
         partidosData.forEach(partido => {
             const partidoElement = document.createElement('div');
-            partidoElement.className = 'partido';
             partidoElement.innerHTML = `
             <div class="p-10 bg-white rounded-xl flex flex-col justify-center items-center shadow-md">
                 <img src="/${partido}.png" alt="${partido}" class=" w-32 h-32 object-cover" >
@@ -102,11 +101,14 @@ async function fetchJsonData(url) {
             folio: document.getElementById("folio").value,
             libre: document.getElementById("libre").value
 
-            
-
         }
         
         console.log(datosEnviar);
+
+        if (folio.value === "") {
+            alert("Favor de ingresar el folio");
+            return;
+        }
         try {
             const response = await fetch("https://contactocoahuila.purpuraamerida.com/atencion/boletas/capturar", {
                 method: 'POST',
@@ -116,12 +118,15 @@ async function fetchJsonData(url) {
             if (!response.ok) {
                 throw new Error("Error en la solicitud POST");
             }
-
+            alert("Datos guardados correctamente");
             const result = await response.json();
             console.log('Datos guardados:', result);
         }   catch (error) {
             console.error("Error al guardar los datos:", error);
         }
+
+        
+
     });
     
 
