@@ -153,9 +153,16 @@ async function fetchJsonData(url) {
             if (!response.ok) {
                 throw new Error("Error en la solicitud POST");
             }
-            alert("Datos guardados correctamente");
-            const result = await response;
-            console.log('Datos guardados:', result);
+
+            const result = await response.json();
+            if (result.resultado === 1) {
+                alert("Datos guardados correctamente");
+            }
+
+            if (result.resultado === 0) {
+                alert("Error al guardar los datos");
+            }
+            //console.log('Datos guardados:', result);
         }   catch (error) {
             console.error("Error al guardar los datos:", error);
         }
