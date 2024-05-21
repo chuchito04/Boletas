@@ -45,20 +45,20 @@ console.log(tipoBoleta);
     <button class="hidden" id="validarSesion"></button>
 
     <div class="bg-gray-100 p-4 flex flex-col">
-        <a class=" bg-red-500 text-white p-2 text-center ml-[80vw] cursor-pointer" id="logout">Cerrar Sesión</a>
+        <a class=" bg-red-500 text-white p-2 text-sm md:text-md text-center ml-[60vw] md:ml-[80vw] cursor-pointer" id="logout">Cerrar Sesión</a>
         <h1 class="text-3xl font-bold text-center mb-2">Captura de boletas</h1>
         <div class="w-full flex justify-center">
             <div class="grid grid-cols-3 gap-10">
                 <div>
-                    <label class="text-2xl font-bold">Usuario:</label>
+                    <label class="text-md md:text-2xl font-bold">Usuario:</label>
                     <h1 class="text-2xl ">{userData.nombre}</h1>
                 </div>
                 <div>
-                    <label class="text-2xl font-bold">PIN:</label>
+                    <label class="text-md md:text-2xl font-bold">PIN:</label>
                     <h1 class="text-2xl">{pin}</h1>
                 </div>
                 <div>
-                    <label class="text-2xl font-bold">Boletas Capturadas:</label>
+                    <label class="text-md md:text-2xl text-inherit font-bold">Boletas Capturadas:</label>
                     <h1 class="text-2xl f">{userData.subidas}</h1>
                 </div>
             </div>
