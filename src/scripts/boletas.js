@@ -96,7 +96,7 @@ async function fetchJsonData(url) {
             const partidoElement = document.createElement('div');
             partidoElement.innerHTML = `
             <div class="p-10 bg-white rounded-xl flex flex-col justify-center items-center shadow-md">
-                <img src="/${partido}.png" alt="${partido}" class=" w-32 h-32 object-cover" >
+                <img src="/logos/${partido}.png" alt="${partido}" class=" w-32 h-32 object-cover" >
                 <input type="checkbox" name="${partido}" id="${partido}" class="w-24 h-12 mt-4">
             </div>
             `;
